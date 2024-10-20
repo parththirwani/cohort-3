@@ -2,8 +2,8 @@
 
 Welcome to my **100xDevs Cohort 3** repository, where I document my journey learning web development. This repo is designed to keep me accountable by ensuring I push code daily as I progress through the cohort. Below is an overview of the key topics I'm covering.
 
-###Start Date -> 20/10/2024
-###End Date -> 
+## Start Date -> 20/10/2024
+## End Date ->
 
 ## Topics that i will cover
 
