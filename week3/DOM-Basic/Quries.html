@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-do</title>
+    </head>
+    <body>
+        <h1>Todo List</h1>
+        <div id="todo1">
+            <h4> 1. Take class</h4>
+            <button onclick="deleteTodo(1)">Delete</button>
+        </div>
+        <div id="todo2">
+            <h4> 2. Do homework</h4>
+            <button onclick="deleteTodo(2)">Delete</button>
+        </div>
+        <div id="todo3">
+            <h4> 3. Go to gym</h4>
+            <button onclick="deleteTodo(3)">Delete</button>
+        </div>
+        <div>
+        <input type="text" placeholder="Enter your Todo here">
+        <button onclick="addTodo()">Add Todo</button>
+        </div>
+        </div>
+        <script>
+                        // function addTodo() {
+            // ///#1 querySeletcor -> Selects the first type of what you search in the html structure like 'input' in this example
+            // const firstInputEl = document.querySelector("input");
+            // const value = firstInputEl.value;
+            // console.log(value);
+        // }
+            ///#2 querySelectorAll -> Selects all the type of element you search in an html structure like all the "h4" returned in an array in this example 
+            // function addTodo(){
+            // const allInputEl= document.querySelectorAll("h4");
+            // console.log(allInputEl);
+            // }
+
+            ///#3 getElementById-> Gets the element with id in html structure or querSelector("#todo1")
+            function addTodo(){
+                const inputEl = document.getElementById("todo1");
+                console.log(inputEl)
+            }
+
+        function deleteTodo(index){
+            const el = document.getElementById("todo"+index)
+            el.parentNode.removeChild(el)
+
+        }
+        </script>
+    </body>
+</html>  
