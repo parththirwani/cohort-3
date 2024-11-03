@@ -2,7 +2,9 @@ const express = require("express");
 const jwt = require("jsonwebtoken")
 const JWT_SECRET= "randomgibberish"
 const app = express();
+
 app.use(express.json());
+const bodyParser = require ("body-parser");
 
 const users = [];
 
@@ -38,27 +40,30 @@ function signinHandler(req, res) {
     }
 }
 
+app.get("/",function(req,res){
+    res.sendFile(__dirname+"/public/frontend.html")
+})
 app.post("/signup", signupHandler);
 app.post("/signin", signinHandler);
 
 function auth(req, res, next) {
-    const token = req.headers.authorization;
+    const token = req.headers.token; 
 
     if (token) {
         jwt.verify(token, JWT_SECRET, (err, decoded) => {
             if (err) {
                 res.status(401).send({
                     message: "Unauthorized"
-                })
+                });
             } else {
                 req.user = decoded;
                 next();
             }
-        })
+        });
     } else {
         res.status(401).send({
             message: "Unauthorized"
-        })
+        });
     }
 }
 
@@ -66,9 +71,10 @@ app.get("/me", auth, (req, res) => {
     const user = req.user;
 
     res.send({
-        username: decoded.username
-    })
-})
+        username: user.username  
+    });
+});
+
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
