@@ -1,40 +1,37 @@
-import React, { createContext, useContext, useState } from 'react';
-
-// Create the context
-export const CountContext = createContext();
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <CountContext.Provider value={{ count, setCount }}>
-      <div>
-        <Count />
-      </div>
-    </CountContext.Provider>
+    <>
+      <LightBulb />
+    </>
   );
 }
 
-function Count() {
+function LightBulb() {
+  const [bulbOn, setBulbOn] = useState(true);
   return (
     <div>
-      <CountRenderer />
-      <Buttons />
+      <BulbState bulbOn={bulbOn} />
+      <ToggleBulbState setBulbOn={setBulbOn} />
     </div>
   );
 }
 
-function CountRenderer() {
-  const { count } = useContext(CountContext); // Extract count from context
-  return <div>Count: {count}</div>;
+function BulbState({ bulbOn }) {
+  return <div>{bulbOn ? "Bulb on" : "Bulb off"}</div>;
 }
 
-function Buttons() {
-  const { count, setCount } = useContext(CountContext); // Extract count and setCount
+function ToggleBulbState({ setBulbOn }) {
   return (
     <div>
-      <button onClick={() => setCount(count + 1)}>Increase</button>
-      <button onClick={() => setCount(count - 1)}>Decrease</button>
+      <button
+        onClick={() => {
+          setBulbOn((currentState) => !currentState);
+        }}
+      >
+        Toggle the bulb
+      </button>
     </div>
   );
 }
